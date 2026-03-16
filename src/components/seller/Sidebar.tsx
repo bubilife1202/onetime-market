@@ -33,7 +33,7 @@ export default function Sidebar({ seller }: SidebarProps) {
       <div className="px-5 py-6 border-b border-white/10">
         <Link href="/dashboard" className="flex items-center gap-2">
           <span className="text-2xl">🛒</span>
-          <span className="text-lg font-bold">일회용마켓</span>
+          <span className="text-lg font-bold">원타임 마켓</span>
         </Link>
       </div>
 

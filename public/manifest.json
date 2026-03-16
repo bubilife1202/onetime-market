@@ -1,6 +1,6 @@
 {
-  "name": "일회용마켓",
-  "short_name": "일회용마켓",
+  "name": "원타임 마켓",
+  "short_name": "원타임 마켓",
   "description": "팔 때만 열리는 나만의 마켓",
   "start_url": "/",
   "display": "standalone",

@@ -43,7 +43,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900">
-            🏪 일회용마켓
+            🏪 원타임 마켓
           </h1>
           <p className="mt-2 text-gray-500">판매자센터</p>
         </div>

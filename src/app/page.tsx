@@ -97,7 +97,7 @@ function PainPoints() {
 }
 
 /* ────────────────────────────────────────────
-   Section: Comparison Table (상설몰 vs 일회용마켓)
+   Section: Comparison Table (상설몰 vs 원타임 마켓)
    ──────────────────────────────────────────── */
 const comparisonRows = [
   { label: "운영 방식", them: "365일 상시 오픈", us: "판매 회차별 열기/닫기" },
@@ -117,7 +117,7 @@ function ComparisonTable() {
     <section className="py-20">
       <div className="mx-auto max-w-4xl px-6">
         <h2 className="mb-4 text-center text-3xl font-bold text-gray-900">
-          상설몰 vs 일회용마켓
+          상설몰 vs 원타임 마켓
         </h2>
         <p className="mb-12 text-center text-gray-500">
           상설몰과는 목적이 다릅니다
@@ -127,7 +127,7 @@ function ComparisonTable() {
           <div className="grid grid-cols-3 bg-gray-100 text-sm font-semibold text-gray-600">
             <div className="p-4" />
             <div className="p-4 text-center">상설몰</div>
-            <div className="p-4 text-center text-blue-600">일회용마켓</div>
+            <div className="p-4 text-center text-blue-600">원타임 마켓</div>
           </div>
           {/* rows */}
           {comparisonRows.map((row, i) => (
@@ -450,7 +450,7 @@ function Footer() {
   return (
     <footer className="border-t border-gray-200 bg-white py-10">
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-4 px-6 text-center text-sm text-gray-400">
-        <span className="font-semibold text-gray-700">일회용마켓</span>
+        <span className="font-semibold text-gray-700">원타임 마켓</span>
         <p>팔 때만 열리는 나만의 마켓</p>
         <div className="flex gap-6">
           <Link href="#" className="transition hover:text-gray-600">
@@ -464,7 +464,7 @@ function Footer() {
           </Link>
         </div>
         <p className="text-xs text-gray-300">
-          &copy; {new Date().getFullYear()} 일회용마켓. All rights reserved.
+          &copy; {new Date().getFullYear()} 원타임 마켓. All rights reserved.
         </p>
       </div>
     </footer>
