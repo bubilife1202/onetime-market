@@ -81,7 +81,8 @@ export default function RefundsPage() {
   }, [selectedRound])
 
   useEffect(() => {
-    fetchOrders()
+    const load = async () => { await fetchOrders() }
+    load()
   }, [fetchOrders])
 
   const handleAction = async (orderId: string, action: 'approve' | 'reject') => {

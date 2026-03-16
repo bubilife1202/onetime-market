@@ -52,17 +52,20 @@ export default function CheckoutPage() {
   })
 
   useEffect(() => {
-    const stored = sessionStorage.getItem(`cart-${linkCode}`)
-    if (!stored) {
-      router.replace(`/m/${linkCode}`)
-      return
-    }
-    setCart(JSON.parse(stored))
+    const init = async () => {
+      const stored = sessionStorage.getItem(`cart-${linkCode}`)
+      if (!stored) {
+        router.replace(`/m/${linkCode}`)
+        return
+      }
+      setCart(JSON.parse(stored))
 
-    fetch(`/api/market/${linkCode}`)
-      .then((res) => res.json())
-      .then(setMarket)
-      .finally(() => setLoading(false))
+      const res = await fetch(`/api/market/${linkCode}`)
+      const data = await res.json()
+      setMarket(data)
+      setLoading(false)
+    }
+    init()
   }, [linkCode, router])
 
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)

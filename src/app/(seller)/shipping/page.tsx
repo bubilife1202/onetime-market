@@ -69,7 +69,8 @@ export default function ShippingPage() {
   }, [selectedRound])
 
   useEffect(() => {
-    fetchOrders()
+    const load = async () => { await fetchOrders() }
+    load()
   }, [fetchOrders])
 
   const handleSelectAll = (checked: boolean) => {
