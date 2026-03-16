@@ -5,7 +5,7 @@ import { formatPrice, getDiscountPercent } from '@/lib/utils'
 
 interface ProductOption {
   name: string
-  values: string[]
+  stock?: number
 }
 
 interface ProductCardProps {
@@ -87,9 +87,8 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
         </span>
       </div>
 
-      {product.options?.map((opt) => (
-        <div key={opt.name} className="mb-3">
-          <label className="text-xs text-gray-500 mb-1 block">{opt.name}</label>
+      {product.options && product.options.length > 0 && (
+        <div className="mb-3">
           <select
             value={selectedOption}
             onChange={(e) => setSelectedOption(e.target.value)}
@@ -97,12 +96,12 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
             disabled={soldOut}
           >
             <option value="">선택해주세요</option>
-            {opt.values.map((v) => (
-              <option key={v} value={v}>{v}</option>
+            {product.options.map((opt) => (
+              <option key={opt.name} value={opt.name}>{opt.name}</option>
             ))}
           </select>
         </div>
-      ))}
+      )}
 
       <div className="flex items-center gap-2">
         <div className="flex items-center border rounded-lg">

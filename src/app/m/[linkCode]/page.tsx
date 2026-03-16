@@ -39,7 +39,7 @@ interface MarketData {
     price: number
     originalPrice?: number | null
     description?: string | null
-    options?: { name: string; values: string[] }[] | null
+    options?: { name: string; stock?: number }[] | null
     stock: number
     imageUrl?: string | null
     sortOrder: number
