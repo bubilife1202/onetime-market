@@ -1,0 +1,108 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Seller {
+  id             String   @id @default(cuid())
+  email          String   @unique
+  password       String
+  storeName      String
+  ownerName      String
+  businessNumber String?
+  phone          String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  rounds         Round[]
+}
+
+model Round {
+  id               String    @id @default(cuid())
+  sellerId         String
+  seller           Seller    @relation(fields: [sellerId], references: [id])
+  name             String
+  roundNumber      Int
+  status           String    @default("SCHEDULED")
+  linkCode         String    @unique
+  startAt          DateTime
+  endAt            DateTime
+  autoClose        Boolean   @default(true)
+  isLive           Boolean   @default(false)
+  refundPolicy     String    @default("7DAY")
+  refundPolicyText String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  products         Product[]
+  orders           Order[]
+}
+
+model Product {
+  id            String      @id @default(cuid())
+  roundId       String
+  round         Round       @relation(fields: [roundId], references: [id])
+  name          String
+  price         Int
+  originalPrice Int?
+  description   String?
+  options       String?
+  stock         Int         @default(100)
+  imageUrl      String?
+  sortOrder     Int         @default(0)
+  createdAt     DateTime    @default(now())
+  orderItems    OrderItem[]
+}
+
+model Order {
+  id              String         @id @default(cuid())
+  roundId         String
+  round           Round          @relation(fields: [roundId], references: [id])
+  orderNumber     String         @unique
+  status          String         @default("PAID")
+  channel         String         @default("DIRECT")
+  buyerName       String
+  buyerPhone      String
+  buyerEmail      String?
+  address         String
+  addressDetail   String?
+  zipCode         String?
+  deliveryMemo    String?
+  totalAmount     Int
+  shippingFee     Int            @default(3000)
+  trackingNumber  String?
+  trackingCarrier String?
+  cancelReason    String?
+  refundReason    String?
+  policySnapshot  String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  items           OrderItem[]
+  notifications   Notification[]
+}
+
+model OrderItem {
+  id          String  @id @default(cuid())
+  orderId     String
+  order       Order   @relation(fields: [orderId], references: [id])
+  productId   String
+  product     Product @relation(fields: [productId], references: [id])
+  productName String
+  option      String?
+  quantity    Int
+  unitPrice   Int
+  totalPrice  Int
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  orderId   String?
+  order     Order?   @relation(fields: [orderId], references: [id])
+  type      String
+  recipient String
+  message   String
+  status    String   @default("SENT")
+  createdAt DateTime @default(now())
+}
